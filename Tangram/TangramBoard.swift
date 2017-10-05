@@ -9,9 +9,23 @@
 import UIKit
 
 class TangramBoard: UIView {
+    let triangle1 = CAShapeLayer()
+    let triangle2 = CAShapeLayer()
+    let triangle3 = CAShapeLayer()
+    let triangle4 = CAShapeLayer()
+    let triangle5 = CAShapeLayer()
+    let square = CAShapeLayer()
+    let parallelogram = CAShapeLayer()
     
     override func awakeFromNib() {
         super.awakeFromNib()
+        
+        self.layer.addSublayer(triangle2)
+        self.layer.addSublayer(triangle1)
+        self.layer.addSublayer(triangle3)
+        self.layer.addSublayer(square)
+        self.layer.addSublayer(triangle4)
+        self.layer.addSublayer(parallelogram)
     }
     
     override func layoutSubviews() {
@@ -21,32 +35,43 @@ class TangramBoard: UIView {
     }
     
     func createLayers() {
-        let triangle1 = CAShapeLayer()
-        triangle1.frame = layer.bounds
+        let l = frame.width
         
+        //layer for triangle1
+        triangle1.frame = layer.bounds
         let path = UIBezierPath()
         path.move(to: CGPoint(x: 0, y: 0))
-        path.addLine(to: CGPoint(x: frame.width/2, y: frame.height/2))
-        path.addLine(to: CGPoint(x: 0, y: frame.height))
+        path.addLine(to: CGPoint(x: l/2, y: l/2))
+        path.addLine(to: CGPoint(x: 0, y: l))
         path.close()
-        
         triangle1.path = path.cgPath
         triangle1.fillColor = UIColor.red.cgColor
         
-        self.layer.addSublayer(triangle1)
-        
-        let triangle2 = CAShapeLayer()
+        //layer for triangle2
         triangle2.frame = layer.bounds
-        
         let path2 = UIBezierPath()
         path2.move(to: CGPoint(x: 0, y: 0))
-        path2.addLine(to: CGPoint(x: frame.width/2, y: frame.height/2))
-        path2.addLine(to: CGPoint(x: frame.width, y: 0))
+        path2.addLine(to: CGPoint(x: l/2, y: l/2))
+        path2.addLine(to: CGPoint(x: l, y: 0))
         path2.close()
-        
         triangle2.path = path2.cgPath
         triangle2.fillColor = UIColor.black.cgColor
         
-        self.layer.addSublayer(triangle2)
+        //layer for triangle3
+        triangle3.frame = layer.bounds
+        let path3 = UIBezierPath()
+        path3.move(to: CGPoint(x: l, y: 0))
+        path3.addLine(to: CGPoint(x: l - l/4, y: l/4))
+        path3.addLine(to: CGPoint(x: l, y: l/2))
+        path3.close()
+        triangle3.path = path3.cgPath
+        triangle3.fillColor = UIColor.blue.cgColor
+        
+        //layer for square
+        square.frame = layer.bounds
+        let squareWidth = (l/2)/sqrt(2)
+        square.path = CGPath(rect: CGRect(x: l/2, y: l/2, width: squareWidth, height: squareWidth), transform: nil)
+        //square.setAffineTransform(CGAffineTransform(rotationAngle: -45.5))
+        square.fillColor = UIColor.green.cgColor
     }
 }
