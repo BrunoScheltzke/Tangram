@@ -9,7 +9,8 @@
 import UIKit
 
 class ViewController: UIViewController {
-
+    @IBOutlet weak var tangramBoard: TangramBoard!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
@@ -20,6 +21,12 @@ class ViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
 
-
+    @IBAction func resetBoard(_ sender: Any) {
+    }
+    @IBAction func makeForm1(_ sender: Any) {
+    }
+    @IBAction func makeForm2(_ sender: Any) {
+    }
+    @IBAction func makeCat(_ sender: Any) {
+    }
 }
-
