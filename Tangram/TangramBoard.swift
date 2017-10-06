@@ -9,7 +9,7 @@
 import UIKit
 
 class TangramBoard: UIView {
-    let triangle1 = CAShapeLayer()
+    var triangle1 = CAShapeLayer()
     let triangle2 = CAShapeLayer()
     let triangle3 = CAShapeLayer()
     let triangle4 = CAShapeLayer()
@@ -20,12 +20,12 @@ class TangramBoard: UIView {
     override func awakeFromNib() {
         super.awakeFromNib()
         
-        self.layer.addSublayer(triangle2)
         self.layer.addSublayer(triangle1)
-        self.layer.addSublayer(triangle3)
-        self.layer.addSublayer(square)
-        self.layer.addSublayer(triangle4)
-        self.layer.addSublayer(parallelogram)
+        //self.layer.addSublayer(triangle2)
+//        self.layer.addSublayer(triangle3)
+//        self.layer.addSublayer(square)
+//        self.layer.addSublayer(triangle4)
+//        self.layer.addSublayer(parallelogram)
     }
     
     override func layoutSubviews() {
@@ -38,13 +38,8 @@ class TangramBoard: UIView {
         let l = frame.width
         
         //layer for triangle1
-        triangle1.frame = layer.bounds
-        let path = UIBezierPath()
-        path.move(to: CGPoint(x: 0, y: 0))
-        path.addLine(to: CGPoint(x: l/2, y: l/2))
-        path.addLine(to: CGPoint(x: 0, y: l))
-        path.close()
-        triangle1.path = path.cgPath
+        triangle1.frame = CGRect(x: 0, y: 0, width: l/2, height: l)
+        triangle1.path = createTrianglePath(width: l/2, height: l)
         triangle1.fillColor = UIColor.red.cgColor
         
         //layer for triangle2
@@ -73,5 +68,15 @@ class TangramBoard: UIView {
         square.path = CGPath(rect: CGRect(x: l/2, y: l/2, width: squareWidth, height: squareWidth), transform: nil)
         //square.setAffineTransform(CGAffineTransform(rotationAngle: -45.5))
         square.fillColor = UIColor.green.cgColor
+    }
+    
+    func createTrianglePath(width: CGFloat, height: CGFloat) -> CGPath {
+        let path = UIBezierPath()
+        path.move(to: CGPoint(x: 0, y: 0))
+        path.addLine(to: CGPoint(x: width, y: height/2))
+        path.addLine(to: CGPoint(x: 0, y: height))
+        path.close()
+        
+        return path.cgPath
     }
 }
