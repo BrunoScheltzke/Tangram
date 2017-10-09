@@ -35,14 +35,6 @@ class TangramBoard: UIView {
         l = frame.width
         hipotenusa = l/2 * sqrt(2)
         
-//        triangle1.anchorPoint = CGPoint(x: 0, y: 0)
-//        triangle2.anchorPoint = CGPoint(x: 0, y: 0)
-//        triangle3.anchorPoint = CGPoint(x: 0, y: 0)
-//        triangle4.anchorPoint = CGPoint(x: 0, y: 0)
-//        triangle5.anchorPoint = CGPoint(x: 0, y: 0)
-//        square.anchorPoint = CGPoint(x: 0, y: 0)
-//        parallelogram.anchorPoint = CGPoint(x: 0, y: 0)
-        
         self.layer.addSublayer(triangle1)
         self.layer.addSublayer(triangle2)
         self.layer.addSublayer(triangle3)
@@ -54,48 +46,25 @@ class TangramBoard: UIView {
         createLayers()
     }
     
-//    override func layoutSubviews() {
-//        super.layoutSubviews()
-//
-//        switch currentForm {
-//        case .camel:
-//            makeCamel()
-//        case .cat:
-//            makeCat()
-//        case .goat:
-//            makeGoat()
-//        default:
-//            makeTangram()
-//        }
-//    }
-//
-    
     func makeTangram() {
-        triangle1.setValue(Double.pi * 4, forKeyPath: rotation)
-        triangle1.position = CGPoint(x: 0 + triangle1.frame.width/2, y: 0 + triangle1.frame.height/2)
+        triangle1.animate(angleRotation: Double.pi * 4, finalPosition: CGPoint(x: l/4, y: l/2), duration: 3)
+
+        triangle2.animate(angleRotation: Double.pi/2, finalPosition: CGPoint(x: l/2, y: l/4), duration: 2)
+
+        triangle3.animate(angleRotation: Double.pi, finalPosition: CGPoint(x: l - l/8, y: (l/4)), duration: 2)
+
+        square.animate(angleRotation: Double.pi/4, finalPosition: CGPoint(x: l * 0.75, y: l/2), duration: 2)
         
-        triangle2.setValue(Double.pi/2, forKeyPath: rotation)
-        triangle2.position.x = l/2
-        triangle2.position.y = triangle2.frame.height/2
+        triangle4.animate(angleRotation: Double.pi/4, finalPosition: CGPoint(x: l - l/8, y: l - l/8), duration: 2)
         
-        triangle3.setValue(Double.pi, forKeyPath: rotation)
-        triangle3.position.x = l - l/4 + triangle3.frame.width/2
-        triangle3.position.y = 0 + triangle3.frame.height/2
+        triangle5.animate(angleRotation: -Double.pi/2, finalPosition: CGPoint(x: l/2, y: l/2 + l/8), duration: 2)
         
-        square.setValue(Double.pi/4, forKeyPath: rotation)
-        square.position.x = l - l/4
-        square.position.y = l/4 + square.frame.height/2
+//        parallelogram.setValue(Double.pi, forKeyPath: rotation)
+//        parallelogram.position.x =  0 + parallelogram.frame.width/2
+//        parallelogram.position.y = l - l / 4 + parallelogram.frame.height/2
         
-        triangle4.setValue(Double.pi/4, forKeyPath: rotation)
-        triangle4.position.x = l/2 + triangle4.frame.width/2
-        triangle4.position.y = l/2 + triangle4.frame.height/2
+        parallelogram.animate(angleRotation: Double.pi, finalPosition: CGPoint(x: l/2 - l/8, y: l - l/8), duration: 2)
         
-        triangle5.setValue(-Double.pi/2, forKeyPath: rotation)
-        triangle5.position = CGPoint(x: l/4 + triangle5.frame.width/2, y: l/2 + triangle5.frame.height/2)
-        
-        parallelogram.setValue(Double.pi, forKeyPath: rotation)
-        parallelogram.position.x =  0 + parallelogram.frame.width/2
-        parallelogram.position.y = l - l / 4 + parallelogram.frame.height/2
     }
     
     func makeCamel() {
@@ -198,5 +167,27 @@ class TangramBoard: UIView {
         path.close()
         
         return path.cgPath
+    }
+    
+    func animate(layer: CAShapeLayer, angleRotation: Double, finalPosition: CGPoint, duration: TimeInterval) {
+//        if layer.position != finalPosition {
+//            let initialPosition = layer.position
+//
+            layer.setValue(angleRotation, forKeyPath: rotation)
+            layer.position = finalPosition
+//
+//            let rotateAnimation = CABasicAnimation(keyPath: rotation)
+//            rotateAnimation.fromValue = layer.value(forKeyPath: rotation)
+//            rotateAnimation.toValue = angleRotation
+//            rotateAnimation.duration = duration
+//
+//            let moveAnimation = CABasicAnimation(keyPath: position)
+//            moveAnimation.fromValue = initialPosition
+//            moveAnimation.duration = duration
+//            moveAnimation.toValue = finalPosition
+//
+//            layer.add(rotateAnimation, forKey: rotation)
+//            layer.add(moveAnimation, forKey: position)
+//        }
     }
 }
