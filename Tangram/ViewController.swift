@@ -22,11 +22,18 @@ class ViewController: UIViewController {
     }
 
     @IBAction func resetBoard(_ sender: Any) {
+        tangramBoard.makeTangram()
     }
+    
     @IBAction func makeForm1(_ sender: Any) {
+        tangramBoard.makeGoat()
     }
+    
     @IBAction func makeForm2(_ sender: Any) {
+        tangramBoard.makeCamel()
     }
+    
     @IBAction func makeCat(_ sender: Any) {
+        tangramBoard.makeCat()
     }
 }
