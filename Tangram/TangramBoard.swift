@@ -71,7 +71,7 @@ class TangramBoard: UIView {
 //
     
     func makeTangram() {
-        triangle1.setValue(Double.pi * 4, forKey: rotation)
+        triangle1.setValue(Double.pi * 4, forKeyPath: rotation)
         triangle1.position = CGPoint(x: 0 + triangle1.frame.width/2, y: 0 + triangle1.frame.height/2)
         
         triangle2.setValue(Double.pi/2, forKeyPath: rotation)
@@ -93,6 +93,7 @@ class TangramBoard: UIView {
         triangle5.setValue(-Double.pi/2, forKeyPath: rotation)
         triangle5.position = CGPoint(x: l/4 + triangle5.frame.width/2, y: l/2 + triangle5.frame.height/2)
         
+        parallelogram.setValue(Double.pi, forKeyPath: rotation)
         parallelogram.position.x =  0 + parallelogram.frame.width/2
         parallelogram.position.y = l - l / 4 + parallelogram.frame.height/2
     }
@@ -102,32 +103,29 @@ class TangramBoard: UIView {
     }
     
     func makeCat() {
-        triangle1.setValue(Double.pi * 4, forKey: rotation)
+        triangle1.setValue(Double.pi * 4, forKeyPath: rotation)
         triangle1.position = CGPoint(x: 0 + triangle1.frame.width/2, y: 0 + triangle1.frame.height/2)
         
         triangle2.setValue(Double.pi/4, forKeyPath: rotation)
-        triangle2.position.x = l/2
-        triangle2.position.y = l/2
+        triangle2.position.x = l/3
+        triangle2.position.y = l * 1.023
         
-        triangle3.setValue(Double.pi, forKeyPath: rotation)
-        triangle3.position.x = l - l/4
-        triangle3.position.y = 0
-        
-        parallelogram.position.x =  l/2
-        parallelogram.position.y = l
+        parallelogram.setValue(Double.pi * 3, forKeyPath: rotation)
+        parallelogram.position.x =  l - parallelogram.frame.width/6
+        parallelogram.position.y = triangle2.position.y/2 + triangle2.frame.size.height/2
         
         square.setValue(Double.pi/4, forKeyPath: rotation)
         square.position.x = -l/6
-        square.position.y = -l/3
+        square.position.y = -square.frame.width/6
         
         triangle5.setValue(Double.pi, forKeyPath: rotation)
-        triangle5.position = CGPoint(x: square.position.x, y: square.position.y - triangle5.frame.height/2)
+        triangle5.position = CGPoint(x: square.position.x + triangle5.frame.width/2, y: square.position.y - triangle5.frame.height/2)
         
         triangle3.setValue(Double.pi * 4, forKeyPath: rotation)
-        triangle3.position = CGPoint(x: square.position.x - square.frame.width/2, y: square.position.y - triangle5.frame.height/2)
+        triangle3.position = CGPoint(x: square.position.x - triangle3.frame.width/2, y: square.position.y - triangle5.frame.height/2)
         
-//        triangle4.setValue(Double.pi, forKeyPath: rotation)
-//        triangle4.frame.origin = CGPoint(x: triangle1.frame.origin.x, y: triangle1.frame.origin.y)
+        triangle4.setValue(Double.pi, forKeyPath: rotation)
+        triangle4.position = CGPoint(x: triangle1.frame.origin.x - triangle4.frame.width/2, y: triangle1.frame.origin.y + triangle4.frame.height/2)
     }
     
     func makeGoat() {
