@@ -61,23 +61,24 @@ class TangramBoard: UIView {
 //        }
 //    }
 //
+    
     func makeTangram() {
-        triangle2.setAffineTransform(CGAffineTransform(rotationAngle: CGFloat.pi/2))
+        triangle2.setValue(Double.pi/2, forKeyPath: rotation)
         triangle2.frame.origin.x = 0
         triangle2.frame.origin.y = 0
         
-        triangle3.setAffineTransform(CGAffineTransform(rotationAngle: CGFloat.pi))
+        triangle3.setValue(Double.pi, forKeyPath: rotation)
         triangle3.frame.origin.x = l - l/4
         
-        square.setAffineTransform(CGAffineTransform(rotationAngle: CGFloat.pi/4))
+        square.setValue(Double.pi/4, forKeyPath: rotation)
         square.frame.origin.x = l - l/4
         square.frame.origin.y = l/4
         
-        triangle4.setAffineTransform(CGAffineTransform(rotationAngle: CGFloat.pi/4))
+        triangle4.setValue(Double.pi/4, forKeyPath: rotation)
         triangle4.frame.origin.x = l
         triangle4.frame.origin.y = l/2
         
-        triangle5.setAffineTransform(CGAffineTransform(rotationAngle: -CGFloat.pi/2))
+        triangle5.setValue(-Double.pi/2, forKeyPath: rotation)
         triangle5.frame.origin = CGPoint(x: l/4, y: l/2)
         
         parallelogram.frame.origin.x =  0
@@ -89,6 +90,28 @@ class TangramBoard: UIView {
     }
     
     func makeCat() {
+        triangle2.setValue(Double.pi/4, forKeyPath: rotation)
+        triangle2.frame.origin.x = l/2
+        triangle2.frame.origin.y = l/2
+        
+        triangle3.setValue(Double.pi, forKeyPath: rotation)
+        triangle3.frame.origin.x = l - l/4
+        
+        parallelogram.frame.origin.x =  l/2
+        parallelogram.frame.origin.y = l
+        
+        square.setValue(Double.pi/4, forKeyPath: rotation)
+        square.frame.origin.x = -l/6
+        square.frame.origin.y = -l/3
+        
+        triangle5.setValue(Double.pi, forKeyPath: rotation)
+        triangle5.frame.origin = CGPoint(x: square.frame.origin.x, y: square.frame.origin.y - triangle5.frame.height/2)
+        
+        triangle3.setValue(Double.pi * 4, forKeyPath: rotation)
+        triangle3.frame.origin = CGPoint(x: square.frame.origin.x - square.frame.width/2, y: square.frame.origin.y - triangle5.frame.height/2)
+        
+        triangle4.setValue(Double.pi, forKeyPath: rotation)
+        triangle4.frame.origin = CGPoint(x: triangle1.frame.origin.x, y: triangle1.frame.origin.y)
     }
     
     func makeGoat() {
@@ -98,10 +121,10 @@ class TangramBoard: UIView {
         animation.fromValue = initialPosition
         animation.toValue = [l/4, l]
         
-        let rotate = CABasicAnimation(keyPath: "transform.rotation")
-        rotate.fromValue = triangle5.value(forKeyPath: "transform.rotation")
+        let rotate = CABasicAnimation(keyPath: rotation)
+        rotate.fromValue = triangle5.value(forKeyPath: rotation)
         rotate.toValue = Double.pi/4
-        triangle5.setValue(Double.pi/4, forKeyPath: "transform.rotation")
+        triangle5.setValue(Double.pi/4, forKeyPath: rotation)
 
         let groupAnimations = CAAnimationGroup()
         groupAnimations.animations = [rotate, animation]

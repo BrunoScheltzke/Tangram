@@ -50,7 +50,7 @@
                                 </connections>
                             </button>
                             <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Rtx-fV-Mlq" customClass="TangramBoard" customModule="Tangram" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="209" width="375" height="375"/>
+                                <rect key="frame" x="69" y="215" width="237" height="237"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             </view>
