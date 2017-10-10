@@ -22,15 +22,17 @@ extension CALayer {
             rotateAnimation.fromValue = value(forKeyPath: rotation)
             rotateAnimation.toValue = angleRotation
             rotateAnimation.duration = duration
+            setValue(angleRotation, forKeyPath: rotation)
 
             let moveAnimation = CABasicAnimation(keyPath: positionKey)
             moveAnimation.fromValue = initialPosition
             moveAnimation.duration = duration
             moveAnimation.toValue = finalPosition
             
-            add(rotateAnimation, forKey: rotation)
-            setValue(angleRotation, forKeyPath: rotation)
-            add(moveAnimation, forKey: positionKey)
+            let groupAnimations = CAAnimationGroup()
+            groupAnimations.animations = [moveAnimation, rotateAnimation]
+            groupAnimations.duration = 3
+            add(groupAnimations, forKey: nil)
         }
     }
     
@@ -46,15 +48,17 @@ extension CALayer {
             rotateAnimation.fromValue = value(forKeyPath: rotation)
             rotateAnimation.toValue = angleRotation
             rotateAnimation.duration = duration
+            setValue(angleRotation, forKeyPath: rotation)
             
             let moveAnimation = CABasicAnimation(keyPath: positionKey)
             moveAnimation.fromValue = initialPosition
             moveAnimation.duration = duration
             moveAnimation.toValue = finalPosition
             
-            add(rotateAnimation, forKey: rotation)
-            setValue(angleRotation, forKeyPath: rotation)
-            add(moveAnimation, forKey: positionKey)
+            let groupAnimations = CAAnimationGroup()
+            groupAnimations.animations = [moveAnimation, rotateAnimation]
+            groupAnimations.duration = 3
+            add(groupAnimations, forKey: nil)
         }
     }
 }
