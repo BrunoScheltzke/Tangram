@@ -72,9 +72,12 @@ class TangramBoard: UIView {
 
         triangle2.animate(angleRotation: Double.pi/4, finalPosition: CGPoint(x: l/3.1, y: l + sqrt(l/6)), duration: 2)
         
-        parallelogram.setValue(Double.pi * 3, forKeyPath: rotation)
-        parallelogram.position.x =  l - parallelogram.frame.width/6
-        parallelogram.position.y = triangle2.position.y/2 + triangle2.frame.size.height/2
+        parallelogram.animate(angleRotation: Double.pi * 3, finalPosition: CGPoint(x: l - l/8, y: l + l/10), duration: 2)
+        
+        let a = (sqrt(l * l/2)/2) * (sqrt(l * l/2)/2)
+        let hip = l/2 * l/2
+        
+        triangle4.animate(angleRotation: Double.pi, finalPositionX: -(sqrt(hip - a)/2), finalPositionY: (sqrt(l * l/2)/2), duration: 2)
         
         square.setValue(Double.pi/4, forKeyPath: rotation)
         square.position.x = -l/6
@@ -85,9 +88,6 @@ class TangramBoard: UIView {
         
         triangle3.setValue(Double.pi * 4, forKeyPath: rotation)
         triangle3.position = CGPoint(x: square.position.x - triangle3.frame.width/2, y: square.position.y - triangle5.frame.height/2)
-        
-        triangle4.setValue(Double.pi, forKeyPath: rotation)
-        triangle4.position = CGPoint(x: triangle1.frame.origin.x - triangle4.frame.width/2, y: triangle1.frame.origin.y + triangle4.frame.height/2)
     }
     
     func makeGoat() {

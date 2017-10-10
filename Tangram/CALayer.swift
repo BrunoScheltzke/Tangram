@@ -33,4 +33,28 @@ extension CALayer {
             add(moveAnimation, forKey: positionKey)
         }
     }
+    
+    func animate(angleRotation: Double, finalPositionX: CGFloat, finalPositionY: CGFloat, duration: TimeInterval){
+        let finalPosition = CGPoint(x: finalPositionX, y: finalPositionY)
+        
+        if self.position != finalPosition {
+            let initialPosition = self.position
+            
+            position = finalPosition
+            
+            let rotateAnimation = CABasicAnimation(keyPath: rotation)
+            rotateAnimation.fromValue = value(forKeyPath: rotation)
+            rotateAnimation.toValue = angleRotation
+            rotateAnimation.duration = duration
+            
+            let moveAnimation = CABasicAnimation(keyPath: positionKey)
+            moveAnimation.fromValue = initialPosition
+            moveAnimation.duration = duration
+            moveAnimation.toValue = finalPosition
+            
+            add(rotateAnimation, forKey: rotation)
+            setValue(angleRotation, forKeyPath: rotation)
+            add(moveAnimation, forKey: positionKey)
+        }
+    }
 }
