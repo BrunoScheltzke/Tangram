@@ -59,10 +59,6 @@ class TangramBoard: UIView {
         
         triangle5.animate(angleRotation: -Double.pi/2, finalPosition: CGPoint(x: l/2, y: l/2 + l/8), duration: 2)
         
-//        parallelogram.setValue(Double.pi, forKeyPath: rotation)
-//        parallelogram.position.x =  0 + parallelogram.frame.width/2
-//        parallelogram.position.y = l - l / 4 + parallelogram.frame.height/2
-        
         parallelogram.animate(angleRotation: Double.pi, finalPosition: CGPoint(x: l/2 - l/8, y: l - l/8), duration: 2)
         
     }
@@ -72,12 +68,9 @@ class TangramBoard: UIView {
     }
     
     func makeCat() {
-        triangle1.setValue(Double.pi * 4, forKeyPath: rotation)
-        triangle1.position = CGPoint(x: 0 + triangle1.frame.width/2, y: 0 + triangle1.frame.height/2)
-        
-        triangle2.setValue(Double.pi/4, forKeyPath: rotation)
-        triangle2.position.x = l/3
-        triangle2.position.y = l * 1.023
+        triangle1.animate(angleRotation: Double.pi * 4, finalPosition: CGPoint(x: l/4, y: l/2), duration: 3)
+
+        triangle2.animate(angleRotation: Double.pi/4, finalPosition: CGPoint(x: l/3.1, y: l + sqrt(l/6)), duration: 2)
         
         parallelogram.setValue(Double.pi * 3, forKeyPath: rotation)
         parallelogram.position.x =  l - parallelogram.frame.width/6
