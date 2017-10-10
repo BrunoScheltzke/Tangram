@@ -79,15 +79,14 @@ class TangramBoard: UIView {
         
         triangle4.animate(angleRotation: Double.pi, finalPositionX: -(sqrt(hip - a)/2), finalPositionY: (sqrt(l * l/2)/2), duration: 2)
         
-        square.setValue(Double.pi/4, forKeyPath: rotation)
-        square.position.x = -l/6
-        square.position.y = -square.frame.width/6
+        let squareWidth = (l/2)/sqrt(2)
+        let squareHip = sqrt(squareWidth * squareWidth / 2)
         
-        triangle5.setValue(Double.pi, forKeyPath: rotation)
-        triangle5.position = CGPoint(x: square.position.x + triangle5.frame.width/2, y: square.position.y - triangle5.frame.height/2)
+        square.animate(angleRotation: Double.pi/4, finalPositionX: -(squareHip/2), finalPositionY: -(squareHip/2), duration: 2)
         
-        triangle3.setValue(Double.pi * 4, forKeyPath: rotation)
-        triangle3.position = CGPoint(x: square.position.x - triangle3.frame.width/2, y: square.position.y - triangle5.frame.height/2)
+        triangle5.animate(angleRotation: Double.pi, finalPositionX: square.position.x + squareHip/2, finalPositionY: square.position.y - squareHip, duration: 2)
+        
+        triangle3.animate(angleRotation: Double.pi * 4, finalPositionX: square.position.x - squareHip/2, finalPositionY: triangle5.position.y, duration: 2)
     }
     
     func makeGoat() {
@@ -160,27 +159,5 @@ class TangramBoard: UIView {
         path.close()
         
         return path.cgPath
-    }
-    
-    func animate(layer: CAShapeLayer, angleRotation: Double, finalPosition: CGPoint, duration: TimeInterval) {
-//        if layer.position != finalPosition {
-//            let initialPosition = layer.position
-//
-            layer.setValue(angleRotation, forKeyPath: rotation)
-            layer.position = finalPosition
-//
-//            let rotateAnimation = CABasicAnimation(keyPath: rotation)
-//            rotateAnimation.fromValue = layer.value(forKeyPath: rotation)
-//            rotateAnimation.toValue = angleRotation
-//            rotateAnimation.duration = duration
-//
-//            let moveAnimation = CABasicAnimation(keyPath: position)
-//            moveAnimation.fromValue = initialPosition
-//            moveAnimation.duration = duration
-//            moveAnimation.toValue = finalPosition
-//
-//            layer.add(rotateAnimation, forKey: rotation)
-//            layer.add(moveAnimation, forKey: position)
-//        }
     }
 }
